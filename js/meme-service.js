@@ -1,5 +1,6 @@
 'use strict'
 
+const KEY = 'Memes';
 var gCanvas;
 var gCtx;
 
@@ -11,19 +12,23 @@ var gMeme = {
     lines: [
         {
             txt: '',
-            size: 20,
+            size: 40,
+            font: 'Impact',
             align: 'left',
-            color: 'red',
+            fill: 'white',
+            stroke: 'black',
             x: 200,
             y: 70
         },
         {
             txt: '',
-            size: 20,
+            size: 40,
+            font: 'Impact',
             align: 'left',
-            color: 'blue',
+            fill: 'white',
+            stroke: 'black',
             x: 200,
-            y: 300
+            y: 400
         }
     ]
 }

@@ -4,39 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper</title>
-    <link rel="stylesheet" href="css/main.css">
-    <script type="text/javascript">
-        if (document.addEventListener) {
-            document.addEventListener('contextmenu', function (e) {
-                e.preventDefault();
-            }, false);
-        } else {
-            document.attachEvent('oncontextmenu', function () {
-                window.event.returnValue = false;
-            });
-        }
-    </script>
+    <title>My meme generator</title>
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
-<body onload="initGame()">
-    <div class="top">
-        <h1>Minesweeper</h1>
-        <h2>0</h2>
-    </div>
-    <div class="top-botton">
-    <button class="smiley" onclick="initGame()">😐</button>
-</div>
-    <div class="board">
+<body onload="init()">
 
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'images')">Images</button>
+        <button class="tablinks" onclick="openTab(event, 'generator')">Generator</button>
     </div>
-    <div class="bottom">
-        <button onclick="initGame(4, 2)">Beginner</button>
-        <button onclick="initGame(8, 12)">Medium</button>
-        <button onclick="initGame(12, 30)">Expert</button>
+
+
+    <div id="images" class="tabcontent">
+        <div class="grid-container">
+            <div class="item">
+                <!-- change later with render function -->
+                <img src="img/1.jpg" onclick="onClickImage(1)">
+                <img src="img/2.jpg" onclick="onClickImage(2)">
+                <img src="img/3.jpg" onclick="onClickImage(3)">
+                <img src="img/4.jpg" onclick="onClickImage(4)">
+                <img src="img/5.jpg" onclick="onClickImage(5)">
+                <img src="img/6.jpg" onclick="onClickImage(6)">
+                <img src="img/7.jpg" onclick="onClickImage(7)">
+                <img src="img/8.jpg" onclick="onClickImage(8)">
+                <img src="img/9.jpg" onclick="onClickImage(9)">
+                <img src="img/10.jpg" onclick="onClickImage(10)">
+                <img src="img/11.jpg" onclick="onClickImage(11)">
+                <img src="img/12.jpg" onclick="onClickImage(12)">
+                <img src="img/13.jpg" onclick="onClickImage(13)">
+                <img src="img/14.jpg" onclick="onClickImage(14)">
+                <img src="img/15.jpg" onclick="onClickImage(15)">
+                <img src="img/16.jpg" onclick="onClickImage(16)">
+                <img src="img/17.jpg" onclick="onClickImage(17)">
+                <img src="img/18.jpg" onclick="onClickImage(18)">
+            </div>
+        </div>
     </div>
-    <script src="js/utils.js"></script>
-    <script src="js/game.js"></script>
+
+    <div id="generator" class="tabcontent">
+
+        <div class="meme-buttons">
+            <button onclick="increaseFont()">A+</button>
+            <button onclick="decreaseFont()">A-</button>
+            <button onclick="moveDown()">&darr;</button>
+            <button onclick="moveUp()">&uarr;</button>
+            <button onclick="alignLeft()">Left</button> <!-- not ready yet -->  
+            <button onclick="addLine()">Add Line</button>
+            <button onclick="clearText()">Clear</button>
+            
+        </div>
+
+        <div class="colors">
+            <label for="fill">Fill style:</label>
+            <input type="color" id="fill" value="#ffffff" onchange="pickFill()">
+
+            <label for="stroke">Stroke style:</label>
+            <input type="color" id="stroke" onchange="pickStroke()">
+
+            <form class="font-form" action="/action_page.php">
+                <label for="fonts">Font</label>
+                <select onchange="changeFonts()" id="fonts" name="fonts">
+                  <option class="impact" value="Impact">Impact</option>
+                  <option class="arial" value="Arial">Arial</option>
+                  <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
+                </select>
+              </form>
+
+
+        </div>
+
+        <div class="txt-input">
+            <label for="txt">Enter text:</label>
+            <input type="text" oninput="insertText()" id="txt">
+            <!-- <button type=button onclick="submitText()">Submit Text</button> -->
+        </div>
+
+        <div class="txt-input">
+            <label for="bottom-txt">Enter text:</label>
+            <input type="text" oninput="insertTextBottom()" id="bottom-txt">
+            <!-- <button type=button onclick="submitText()">Submit Text</button> -->
+        </div>
+
+        <canvas id="myCanvas" width="500" height="500" onmousedown="checkCor(event)">
+        </canvas>
+        <div><a href="#" onclick="downloadCanvas(this)" download="">Download</a></div>
+    </div>
+
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-storage.js"></script>
 </body>
 
 </html>

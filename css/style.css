@@ -69,3 +69,26 @@ img {
   .meme-buttons {
       padding: 10px;
   }
+
+  .colors {
+    padding-bottom: 10px;
+  }
+
+  .font-form {
+    padding-top: 10px;
+  }
+
+  .txt-input {
+    padding-bottom: 5px;
+  }
+
+  .impact {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  .comic {
+    font-family: 'Comic Sans MS' ;
+  }
+
+  .arial {
+    font-family: Arial, Helvetica, sans-serif;
+  }
