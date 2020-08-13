@@ -5,11 +5,12 @@ function init() {
     gCtx = gCanvas.getContext('2d');
     
     document.getElementById("defaultOpen").click();
-    window.addEventListener('resize', function(){
-        resizeCanvas()
-    })
+   
 }
 
+// window.addEventListener('resize', function(){
+//     resizeCanvas()
+// })
 
 
 function openTab(evt, tabName) {
@@ -29,7 +30,7 @@ function openTab(evt, tabName) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = 'block';
+    document.getElementById(tabName).style.display = 'flex';
     evt.currentTarget.className += ' active';
 }
 

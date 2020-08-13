@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My meme generator</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/9ca7f01aba.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body onload="init()">
 
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'images')" id="defaultOpen">Images</button>
-        <button class="tablinks" onclick="openTab(event, 'generator')">Generator</button>
+        <div class="tablinks" onclick="openTab(event, 'images')" id="defaultOpen">Images</div>
+        <div class="tablinks" onclick="openTab(event, 'generator')">Generator</div>
     </div>
 
 
@@ -43,56 +44,72 @@
         </div>
     </div>
 
-    <div id="generator" class="tabcontent">
+    <div id="generator" class="tabcontent flex-container">
 
-        <div class="meme-buttons">
-            <button onclick="increaseFont()">A+</button>
-            <button onclick="decreaseFont()">A-</button>
-            <button onclick="moveDown()">&darr;</button>
-            <button onclick="moveUp()">&uarr;</button>
-            <button onclick="alignLeft()">Left</button>
-            <button onclick="alignCenter()">Center</button>
-            <button onclick="alignRight()">Right</button>
-            <button onclick="changeIndex()">&darr;&uarr;</button>
-            <button onclick="clearLine()">Dlt Ln.</button>
-            <button onclick="clearText()">Clear</button>
+        <div class="flex item-canvas">
+            <canvas id="myCanvas" width="400" height="400" onmousedown="checkCor(event)">
+            </canvas>
+
+
+        </div>
+
+        <div class="flex item-control">
+
+            <div class="txt-input">
+                <label for="txt"></label>
+                <input type="text" placeholder= "insert text top" oninput="insertText()" id="txt" on>
+                <!-- <button type=button onclick="submitText()">Submit Text</button> -->
+            </div>
+
+            <div class="txt-input">
+                <label for="bottom-txt"></label>
+                <input type="text" placeholder= "insert text bottom" oninput="insertTextBottom()" id="bottom-txt" onclick="focus()">
+                <!-- <button type=button onclick="submitText()">Submit Text</button> -->
+            </div>
             
+            <div class="input-buttons">
+                <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="changeIndex()">
+                <img src="icons/wiping-swipe-for-floors.png" onclick="clearLine()">
+                <img src="icons/trash.png" onclick="clearText()">
+            </div>
+
+            <div class="section-text-btn">
+            <div class="meme-buttons">
+                <img src="icons/increase font - icon.png" onclick="increaseFont()">
+                <img src="icons/decrease font - icon.png" onclick="decreaseFont()">
+                <img src="icons/down-arrow (1).png" onclick="moveDown()">
+                <img src="icons/up-arrow (1).png" onclick="moveUp()">
+                <img src="icons/align-to-left.png" onclick="alignLeft()">
+                <img src="icons/center-text-alignment.png" onclick="alignCenter()">
+                <img src="icons/align-to-right.png" onclick="alignRight()">
+
+            </div>
+
+            <div class="colors">
+
+                <form class="font-form" action="/action_page.php">
+                    <label for="fonts"></label>
+                    <select onchange="changeFonts()" id="fonts" name="fonts">
+                        <option class="impact" value="Impact">Impact</option>
+                        <option class="arial" value="Arial">Arial</option>
+                        <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
+                    </select>
+                </form>
+
+
+                <label for="fill"><img src="icons/paint-board-and-brush.png"></label>
+                <input type="color" id="fill" value="#ffffff" onchange="pickFill()" hidden>
+
+                <label for="stroke"><img src="icons/fonts-hand-drawn-symbol-outline.png"></label>
+                <input type="color" id="stroke" onchange="pickStroke()" hidden>
+
+            </div>
+            </div>  
+
+            <div><a href="#" onclick="downloadCanvas(this)" download=""><img class="download" src="icons/download-button.png"></a></div>
         </div>
 
-        <div class="colors">
-            <label for="fill">Fill style:</label>
-            <input type="color" id="fill" value="#ffffff" onchange="pickFill()">
 
-            <label for="stroke">Stroke style:</label>
-            <input type="color" id="stroke" onchange="pickStroke()">
-
-            <form class="font-form" action="/action_page.php">
-                <label for="fonts">Font</label>
-                <select onchange="changeFonts()" id="fonts" name="fonts">
-                  <option class="impact" value="Impact">Impact</option>
-                  <option class="arial" value="Arial">Arial</option>
-                  <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
-                </select>
-              </form>
-
-
-        </div>
-
-        <div class="txt-input">
-            <label for="txt">Enter text:</label>
-            <input type="text" oninput="insertText()" id="txt">
-            <!-- <button type=button onclick="submitText()">Submit Text</button> -->
-        </div>
-
-        <div class="txt-input">
-            <label for="bottom-txt">Enter text:</label>
-            <input type="text" oninput="insertTextBottom()" id="bottom-txt" onclick="focus()">
-            <!-- <button type=button onclick="submitText()">Submit Text</button> -->
-        </div>
-
-        <canvas id="myCanvas" width="500" height="500" onmousedown="checkCor(event)">
-        </canvas>
-        <div><a href="#" onclick="downloadCanvas(this)" download="">Download</a></div>
     </div>
 
     <script src="js/meme-service.js"></script>
