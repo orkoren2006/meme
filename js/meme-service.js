@@ -14,20 +14,20 @@ var gMeme = {
             txt: '',
             size: 40,
             font: 'Impact',
-            align: 'left',
+            align: 'center',
             fill: 'white',
             stroke: 'black',
-            x: 200,
+            x: 250,
             y: 70
         },
         {
             txt: '',
             size: 40,
             font: 'Impact',
-            align: 'left',
+            align: 'center',
             fill: 'white',
             stroke: 'black',
-            x: 200,
+            x: 250,
             y: 400
         }
     ]

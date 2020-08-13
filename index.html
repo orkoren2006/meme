@@ -12,7 +12,7 @@
 <body onload="init()">
 
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'images')">Images</button>
+        <button class="tablinks" onclick="openTab(event, 'images')" id="defaultOpen">Images</button>
         <button class="tablinks" onclick="openTab(event, 'generator')">Generator</button>
     </div>
 
@@ -50,8 +50,11 @@
             <button onclick="decreaseFont()">A-</button>
             <button onclick="moveDown()">&darr;</button>
             <button onclick="moveUp()">&uarr;</button>
-            <button onclick="alignLeft()">Left</button> <!-- not ready yet -->  
-            <button onclick="addLine()">Add Line</button>
+            <button onclick="alignLeft()">Left</button>
+            <button onclick="alignCenter()">Center</button>
+            <button onclick="alignRight()">Right</button>
+            <button onclick="changeIndex()">&darr;&uarr;</button>
+            <button onclick="clearLine()">Dlt Ln.</button>
             <button onclick="clearText()">Clear</button>
             
         </div>
@@ -83,7 +86,7 @@
 
         <div class="txt-input">
             <label for="bottom-txt">Enter text:</label>
-            <input type="text" oninput="insertTextBottom()" id="bottom-txt">
+            <input type="text" oninput="insertTextBottom()" id="bottom-txt" onclick="focus()">
             <!-- <button type=button onclick="submitText()">Submit Text</button> -->
         </div>
 
