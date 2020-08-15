@@ -10,6 +10,8 @@ function init() {
     // window.addEventListener('resize', function(){
     //     resizeCanvas()
     // })
+
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
 function onOpenTab(evt, tabName) {
@@ -19,8 +21,7 @@ function onOpenTab(evt, tabName) {
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName('tabcontent');
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = 'none';
-        
+        tabcontent[i].style.display = 'none';     
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
@@ -29,24 +30,20 @@ function onOpenTab(evt, tabName) {
         tablinks[i].className = tablinks[i].className.replace(' active', '');
     }
 
-
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = 'flex';
     evt.currentTarget.className += ' active';
 
-    if (tablinks.className === ' active') {
-        tablinks.innerHTML = '';
-    }
 }
 
-function renderGallery() {
-    var strHTML = `<div class="item">`;
-    for (var i = 1; i <= 17; i++) {
-        strHTML += `<img src="img/${i}.jpg" onclick="onClickImage(${i})">`
-    }
-    strHTML += `</div>`
-    document.querySelector('.grid-container').innerHTML = strHTML;
-}
+// function renderGallery() { // Doesn't create gaps between images for some reason
+//     var strHTML = `<div class="item">`;
+//     for (var i = 1; i <= 17; i++) {
+//         strHTML += `<img src="img/${i}.jpg" onclick="onClickImage(${i})">`
+//     }
+//     strHTML += `</div>`
+//     document.querySelector('.grid-container').innerHTML = strHTML;
+// }
 
 function drawImg(num, func, func2) {
     const img = new Image();

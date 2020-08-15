@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>My meme generator</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- <script src="https://kit.fontawesome.com/9ca7f01aba.js" crossorigin="anonymous"></script> -->
@@ -15,6 +16,10 @@
     <div class="tab">
         <div class="tablinks" onclick="onOpenTab(event, 'images')" id="defaultOpen">Images</div>
         <div class="tablinks" onclick="onOpenTab(event, 'generator')">Generator</div>
+        <div class="logo">
+            <img src="icons/LOGO.png" class="image1">
+            <img src="icons/m-logo.png" class="image2">
+        </div>
     </div>
 
 
@@ -46,9 +51,10 @@
     <div id="generator" class="tabcontent flex-container">
 
         <div class="flex item-canvas">
-            <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)" onmouseup="onReleaseSelection(event)">
+            <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)"
+                onmouseup="onReleaseSelection(event)">
             </canvas>
-        
+
             <!-- <div class="flex item-canvas">
             <canvas id="myCanvas" width="400" height="400" ontouchstart="onClickSelection(event)"
                 ontouchend="onReleaseSelection(event)" >
@@ -61,7 +67,7 @@
 
             <div class="txt-input">
                 <label for="txt"></label>
-                <input type="text" placeholder="insert text" oninput="onInsertText()" id="txt" on>
+                <input type="text" placeholder="Insert Text" oninput="onInsertText()" id="txt" on>
                 <!-- <button type=button onclick="submitText()">Submit Text</button> -->
             </div>
 
@@ -91,24 +97,26 @@
                         <select onchange="onChangeFonts()" id="fonts" name="fonts">
                             <option class="impact" value="Impact">Impact</option>
                             <option class="arial" value="Arial">Arial</option>
+                            <option class="courier" value="Trebuchet MS">Trebuchet MS</option>
+                            <option class="tahoma" value="Tahoma">Tahoma</option>
                             <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
                         </select>
                     </form>
-                    
+
                     <label for="fill"><img src="icons/paint-board-and-brush.png"></label>
                     <input type="color" id="fill" value="#ffffff" onchange="onPickFill()" hidden>
 
                     <label for="stroke"><img src="icons/fonts-hand-drawn-symbol-outline.png"></label>
                     <input type="color" id="stroke" onchange="onPickStroke()" hidden>
-                    </div>
-                
+                </div>
+
             </div>
 
             <div class="generate-buttons">
                 <button class="generate" onclick="onGenerateMeme()">Generate</button>
-                <div><a href="#" onclick="downloadCanvas(this)" download=""><img class="download"
-                            src="icons/download-button.png" hidden></a></div>
-                <button class="edit" onclick="onEdit()" hidden>Re-edit meme</button>
+                <div><a href="#" class="download" onclick="downloadCanvas(this)" download="" hidden>
+                        Download </a></div>
+                <button class="edit" onclick="onEdit()" hidden>Edit again</button>
             </div>
         </div>
 
