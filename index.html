@@ -6,22 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My meme generator</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/9ca7f01aba.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/9ca7f01aba.js" crossorigin="anonymous"></script> -->
 
 </head>
 
 <body onload="init()">
 
     <div class="tab">
-        <div class="tablinks" onclick="openTab(event, 'images')" id="defaultOpen">Images</div>
-        <div class="tablinks" onclick="openTab(event, 'generator')">Generator</div>
+        <div class="tablinks" onclick="onOpenTab(event, 'images')" id="defaultOpen">Images</div>
+        <div class="tablinks" onclick="onOpenTab(event, 'generator')">Generator</div>
     </div>
 
 
     <div id="images" class="tabcontent">
         <div class="grid-container">
             <div class="item">
-                <!-- change later with render function -->
                 <img src="img/1.jpg" onclick="onClickImage(1)">
                 <img src="img/2.jpg" onclick="onClickImage(2)">
                 <img src="img/3.jpg" onclick="onClickImage(3)">
@@ -47,7 +46,8 @@
     <div id="generator" class="tabcontent flex-container">
 
         <div class="flex item-canvas">
-            <canvas id="myCanvas" width="400" height="400" onmousedown="checkCor(event)">
+            <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)"
+                onmouseup="onReleaseSelection(event)">
             </canvas>
 
 
@@ -57,56 +57,55 @@
 
             <div class="txt-input">
                 <label for="txt"></label>
-                <input type="text" placeholder= "insert text top" oninput="insertText()" id="txt" on>
+                <input type="text" placeholder="insert text" oninput="onInsertText()" id="txt" on>
                 <!-- <button type=button onclick="submitText()">Submit Text</button> -->
             </div>
 
-            <div class="txt-input">
-                <label for="bottom-txt"></label>
-                <input type="text" placeholder= "insert text bottom" oninput="insertTextBottom()" id="bottom-txt" onclick="focus()">
-                <!-- <button type=button onclick="submitText()">Submit Text</button> -->
-            </div>
-            
             <div class="input-buttons">
-                <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="changeIndex()">
-                <img src="icons/wiping-swipe-for-floors.png" onclick="clearLine()">
-                <img src="icons/trash.png" onclick="clearText()">
+                <img class="add-line" src="icons/plus.png" onclick="onAddLine()">
+                <img class="swap" src="icons/sort.png" onclick="onSwapLine()">
+                <img class="broom" src="icons/clean.png" onclick="onClearLine()">
+                <img class="trash" src="icons/bin.png" onclick="onClearText()">
             </div>
 
             <div class="section-text-btn">
-            <div class="meme-buttons">
-                <img src="icons/increase font - icon.png" onclick="increaseFont()">
-                <img src="icons/decrease font - icon.png" onclick="decreaseFont()">
-                <img src="icons/down-arrow (1).png" onclick="moveDown()">
-                <img src="icons/up-arrow (1).png" onclick="moveUp()">
-                <img src="icons/align-to-left.png" onclick="alignLeft()">
-                <img src="icons/center-text-alignment.png" onclick="alignCenter()">
-                <img src="icons/align-to-right.png" onclick="alignRight()">
+                <div class="meme-buttons">
+                    <img src="icons/increase font - icon.png" onclick="onIncreaseFont()">
+                    <img src="icons/decrease font - icon.png" onclick="onDecreaseFont()">
+                    <img src="icons/down-arrow (1).png" onclick="onMoveDown()">
+                    <img src="icons/up-arrow (1).png" onclick="onMoveUp()">
+                    <img src="icons/align-to-left.png" onclick="onAlignLeft()">
+                    <img src="icons/center-text-alignment.png" onclick="onAlignCenter()">
+                    <img src="icons/align-to-right.png" onclick="onAlignRight()">
 
+                </div>
+
+                <div class="colors">
+
+                    <form class="font-form" action="/action_page.php">
+                        <label for="fonts"></label>
+                        <select onchange="onChangeFonts()" id="fonts" name="fonts">
+                            <option class="impact" value="Impact">Impact</option>
+                            <option class="arial" value="Arial">Arial</option>
+                            <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
+                        </select>
+                    </form>
+                    
+                    <label for="fill"><img src="icons/paint-board-and-brush.png"></label>
+                    <input type="color" id="fill" value="#ffffff" onchange="onPickFill()" hidden>
+
+                    <label for="stroke"><img src="icons/fonts-hand-drawn-symbol-outline.png"></label>
+                    <input type="color" id="stroke" onchange="onPickStroke()" hidden>
+                    </div>
+                
             </div>
 
-            <div class="colors">
-
-                <form class="font-form" action="/action_page.php">
-                    <label for="fonts"></label>
-                    <select onchange="changeFonts()" id="fonts" name="fonts">
-                        <option class="impact" value="Impact">Impact</option>
-                        <option class="arial" value="Arial">Arial</option>
-                        <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
-                    </select>
-                </form>
-
-
-                <label for="fill"><img src="icons/paint-board-and-brush.png"></label>
-                <input type="color" id="fill" value="#ffffff" onchange="pickFill()" hidden>
-
-                <label for="stroke"><img src="icons/fonts-hand-drawn-symbol-outline.png"></label>
-                <input type="color" id="stroke" onchange="pickStroke()" hidden>
-
+            <div class="generate-buttons">
+                <button class="generate" onclick="onGenerateMeme()">Generate</button>
+                <div><a href="#" onclick="downloadCanvas(this)" download=""><img class="download"
+                            src="icons/download-button.png" hidden></a></div>
+                <button class="edit" onclick="onEdit()" hidden>Re-edit meme</button>
             </div>
-            </div>  
-
-            <div><a href="#" onclick="downloadCanvas(this)" download=""><img class="download" src="icons/download-button.png"></a></div>
         </div>
 
 

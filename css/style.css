@@ -96,10 +96,12 @@ max-width: 400px;
 
 .item-control {
   height: 400px;
-  width: 600px;
+  width: auto;
+  
   background-color: #383b42;
   justify-self: center;
-  padding: 0 10px;
+  padding: 0px 48px;
+  border-radius: 56px;
 }
 
 
@@ -125,10 +127,12 @@ max-width: 400px;
 }
 
 .meme-buttons {
-      padding-top: 16px;
+      
       padding-bottom:16px;
       
   }
+
+
 
 .font-form {
     /* padding-top: 10px; */
@@ -141,27 +145,35 @@ select{
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 6px;
-  border-radius: 6px;
+  border-radius: 12px;
   min-width: 120px;
   margin-right: 16px;
   margin-bottom: 16px;
 }
+
 input{
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-left: 6px;
-  border-radius: 6px;
-  min-width: 250px;
+  border-radius: 12px;
+  min-width: 445px;
 }
 
 .section-text-btn{
-  background-image:linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
-  min-width: 250px;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  /* background-image:linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%); */
+  background-color: #19a59f;
+  min-height: 151px ;
   padding-left: 16px;
   padding-right: 16px;
   margin-top: 16px;
   margin-bottom: 16px;
   border-radius: 24px;
+  
+
 }
 .impact {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -173,52 +185,105 @@ input{
 .arial {
     font-family: Arial, Helvetica, sans-serif;
   }
-  .input-buttons{
+
+.input-buttons{
     margin-top:16px;
+
   }
 
-  .input-buttons img {
+.input-buttons img {
+    max-width: 56px;
+    max-height: 51px;
+    background-color: white;
+    padding: 12px;
+    margin-left: 6px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+    -moz-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+    box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+
+  }
+
+
+.meme-buttons img {
+    max-width: 56px;
+    max-height: 51px;
+    background-color: white;
+    padding: 12px;
+    margin-right:6px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+    -moz-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+    box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+  }
+
+.colors img {
+  max-width: 56px;
+  max-height: 51px;
+  background-color: white;
+  padding: 12px;
+  margin-left: 6px;
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+  -moz-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+  box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
+  }
+
+img.download {
     max-width: 30px;
     max-height: 30px;
     background-color: white;
     padding: 3px;
     border-radius: 6px;
-    
   }
 
-  .meme-buttons img {
-    max-width: 30px;
+img.trash {
+    background-color: #d42536;
+  }
+
+img.swap {
+  background-color: #3aaecc
+  }
+
+img.broom {
+background-color: goldenrod;
+  }
+
+img.add-line {
+background-color: #3dd554;
+  }
+
+img.download {
+  background-color: #8f44bb;
+}
+
+img.generate {
+  max-width: 30px;
     max-height: 30px;
     background-color: white;
     padding: 3px;
     border-radius: 6px;
-  }
+}
 
-  .colors img {
-    max-width: 30px;
-    max-height: 30px;
-    background-color: white;
-    padding: 3px;
-    border-radius: 6px;
-  }
+.generate-buttons {
+  display: flex;
+ height: 30px;
+}
 
-  img.download {
-    max-width: 30px;
-    max-height: 30px;
-    background-color: white;
-    padding: 3px;
-    border-radius: 6px;
-  }
+/* media query */
 
-
-  /* media query */
-
-  @media (max-width: 720px) {
+@media (max-width: 1200px) {
     .flex-container {
       display: flex;
       flex-direction: column;
       align-items: center ;
       justify-content: space-around;
       
+    }
+
+
+
+    input {
+      width: 400px;
     }
   }

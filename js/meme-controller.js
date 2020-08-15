@@ -3,17 +3,18 @@
 function init() {
     gCanvas = document.getElementById('myCanvas');
     gCtx = gCanvas.getContext('2d');
-    
+
     document.getElementById("defaultOpen").click();
-   
+    // renderGallery()
+
+    // window.addEventListener('resize', function(){
+    //     resizeCanvas()
+    // })
+
 }
 
-// window.addEventListener('resize', function(){
-//     resizeCanvas()
-// })
 
-
-function openTab(evt, tabName) {
+function onOpenTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -34,144 +35,157 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += ' active';
 }
 
+function renderGallery() {
+    var strHTML = `<div class="item">`;
+    for (var i = 1; i <= 17; i++) {
+        strHTML += `<img src="img/${i}.jpg" onclick="onClickImage(${i})">`
+    }
+    strHTML += `</div>`
+    document.querySelector('.grid-container').innerHTML = strHTML;
+}
 
-function drawImg(num, func) {
+function drawImg(num, func, func2) {
     const img = new Image();
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         func();
+        func2();
     }
     img.src = `img/${num}.jpg`;
-
 }
 
 function onClickImage(num) {
-    openTab(event, 'generator')
-    drawImg(num, drawText)
+    onOpenTab(event, 'generator')
+    drawImg(num, drawText, drawRect)
     gMeme.selectedImgId = num;
 }
 
 function drawText() {
-
-    gCtx.lineWidth = '2';
-    gCtx.strokeStyle = gMeme.lines[0].stroke;
-    gCtx.fillStyle = gMeme.lines[0].fill;
-    gCtx.font = `${gMeme.lines[0].size}px ${gMeme.lines[0].font}`;
-    gCtx.textAlign = gMeme.lines[0].align;
-    gCtx.strokeText(gMeme.lines[0].txt, gMeme.lines[0].x, gMeme.lines[0].y);
-    gCtx.fillText(gMeme.lines[0].txt, gMeme.lines[0].x, gMeme.lines[0].y);
-
-    gCtx.strokeStyle = gMeme.lines[1].stroke;
-    gCtx.fillStyle = gMeme.lines[1].fill;
-    gCtx.font = `${gMeme.lines[1].size}px ${gMeme.lines[1].font}`;
-    gCtx.textAlign = gMeme.lines[1].align;
-    gCtx.strokeText(gMeme.lines[1].txt, gMeme.lines[1].x, gMeme.lines[1].y);
-    gCtx.fillText(gMeme.lines[1].txt, gMeme.lines[1].x, gMeme.lines[1].y);
+    var line = gMeme.lines;
+    for (var i = 0; i < line.length; i++) {
+        gCtx.lineWidth = '2';
+        gCtx.strokeStyle = line[i].stroke;
+        gCtx.fillStyle = line[i].fill;
+        gCtx.font = `${line[i].size}px ${line[i].font}`;
+        gCtx.textAlign = line[i].align;
+        gCtx.strokeText(line[i].txt, line[i].x, line[i].y);
+        gCtx.fillText(line[i].txt, line[i].x, line[i].y);
+    }
 }
 
-function insertText() {
-    index = 0;
-    gMeme.lines[0].txt = document.querySelector('#txt').value;
-    drawImg(gMeme.selectedImgId, drawText)
+function drawRect() {
+    gCtx.beginPath();
+    gCtx.rect(rect.x, rect.y, rect.width, rect.height); /// x, y, width, height
+    gCtx.strokeStyle = 'black';
+    gCtx.stroke();
 }
 
-function insertTextBottom() {
-    index = 1;
-    gMeme.lines[1].txt = document.querySelector('#bottom-txt').value;
-    drawImg(gMeme.selectedImgId, drawText)
+function onInsertText() {
+    gMeme.lines[index].txt = document.querySelector('#txt').value;
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function increaseFont() {
-    gCtx.font = `${gMeme.lines[index].size++}px Impact`;
-    drawImg(gMeme.selectedImgId, drawText)
+function onAddLine() {
+    if (gMeme.lines.length === 1) {
+        document.querySelector('#txt').value = '';
+        addLine();
+        swapLine();
+        updateSelectArea()
+        drawImg(gMeme.selectedImgId, drawText, drawRect)
+    }
 }
 
-function decreaseFont() {
-    gCtx.font = `${gMeme.lines[index].size--}px Impact`;
-    drawImg(gMeme.selectedImgId, drawText)
+function onSwapLine() {
+    if (gMeme.lines.length === 2) {
+        swapLine();
+        if (index === 0) document.querySelector('#txt').value = gMeme.lines[0].txt;
+        else document.querySelector('#txt').value = gMeme.lines[1].txt;
+    }
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect);
 }
 
-function moveDown() {
-    gMeme.lines[index].y += 5;
-    drawImg(gMeme.selectedImgId, drawText)
+function onIncreaseFont() {
+    increaseFont()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function moveUp() {
-    gMeme.lines[index].y -= 5;
-    drawImg(gMeme.selectedImgId, drawText)
+function onDecreaseFont() {
+    decreaseFont()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function alignLeft() {
-    gMeme.lines[index].align = 'left';
-    gMeme.lines[index].x = 10;
-    drawImg(gMeme.selectedImgId, drawText)
+function onMoveDown() {
+    moveDown()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function alignRight() {
-    gMeme.lines[index].align = 'right'
-    gMeme.lines[index].x = 490;
-    drawImg(gMeme.selectedImgId, drawText)
+function onMoveUp() {
+    moveUp()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function alignCenter() {
-    gMeme.lines[index].align = 'center'
-    gMeme.lines[index].x = 250;
-    drawImg(gMeme.selectedImgId, drawText)
+function onAlignLeft() {
+    alignLeft()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function focus() {
-    console.log('you made it!');
-
-}
-function changeIndex() {
-    if (index === 0) index = 1
-    else index = 0
-
+function onAlignRight() {
+    alignRight()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function pickFill() {
+function onAlignCenter() {
+    alignCenter()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
+}
+
+function onPickFill() {
     gMeme.lines[index].fill = document.querySelector('#fill').value
-    drawImg(gMeme.selectedImgId, drawText)
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function pickStroke() {
+function onPickStroke() {
     gMeme.lines[index].stroke = document.querySelector('#stroke').value
-    drawImg(gMeme.selectedImgId, drawText)
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function changeFonts() {
+function onChangeFonts() {
     gMeme.lines[index].font = document.querySelector('#fonts').value
-    drawImg(gMeme.selectedImgId, drawText)
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-
-// function submitText() {
-//     // gMeme.lines[index].txt = document.querySelector('#txt').value;
-//     // document.querySelector('#txt').value = '';
-//     // drawText();
-//     // saveToStorage(KEY, gMeme)
-//     // loadFromStorage(KEY, gMeme)
-// }
-
-function clearLine() {
-    if (index === 0) document.querySelector('#txt').value = '';
-    else document.querySelector('#bottom-txt').value = '';
-    gMeme.lines[index].txt = '';
-    drawImg(gMeme.selectedImgId, drawText)
-}
-
-function clearText() {
+function onClearLine() {
     document.querySelector('#txt').value = '';
-    document.querySelector('#bottom-txt').value = '';
-    gMeme.lines[0].txt = '';
-    gMeme.lines[1].txt = '';
-    drawImg(gMeme.selectedImgId, drawText)
+    clearLine()
+    updateSelectArea()
+    drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
 
-function clearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-    // You may clear part of the canvas
-    // gCtx.clearRect(0, 0, gCanvas.width / 2, gCanvas.height / 2);
+function onClearText() {
+    clearText()
+    document.querySelector('#txt').value = '';
+    drawImg(gMeme.selectedImgId, drawText, drawRect);
+}
+
+function onGenerateMeme() {
+    document.querySelector('.generate').style.display = 'none';
+    document.querySelector('.download').style.display = 'flex';
+    document.querySelector('.edit').style.display = 'flex';
+    saveToStorage(KEY, rect)
+    clearRect();
+    drawImg(gMeme.selectedImgId, drawText, drawRect);
 }
 
 function downloadCanvas(elLink) {
@@ -179,6 +193,33 @@ function downloadCanvas(elLink) {
     elLink.href = data;
     elLink.download = 'my-image.jpg';
 }
+
+function onEdit() {
+    document.querySelector('.generate').style.display = 'flex';
+    document.querySelector('.download').style.display = 'none';
+    document.querySelector('.edit').style.display = 'none';
+    loadRect()
+    drawRect();
+}
+
+function onClickSelection(ev) {
+    if (ev.offsetX >= rect.x && ev.offsetX <= rect.x + rect.width && ev.offsetY >= rect.y && ev.offsetY <= (rect.y + rect.height)) {
+        startX = ev.offsetX;
+        startY = ev.offsetY;
+    }
+};
+
+function onReleaseSelection(ev) {
+    endX = ev.offsetX;
+    endY = ev.offsetY;
+    differenceX = endX - startX;
+    differenceY = endY - startY;
+    if (ev.offsetX >= rect.x + differenceX && ev.offsetX <= rect.x + rect.width +
+        differenceX && ev.offsetY >= rect.y + differenceY && ev.offsetY <= (rect.y + rect.height) + differenceY) {
+        moveSelection();
+        drawImg(gMeme.selectedImgId, drawText, drawRect)
+    }
+};
 
 
 // // need to fix bug when choosing image it clears it
