@@ -10,9 +10,7 @@ function init() {
     // window.addEventListener('resize', function(){
     //     resizeCanvas()
     // })
-
 }
-
 
 function onOpenTab(evt, tabName) {
     // Declare all variables
@@ -22,6 +20,7 @@ function onOpenTab(evt, tabName) {
     tabcontent = document.getElementsByClassName('tabcontent');
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = 'none';
+        
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
@@ -30,9 +29,14 @@ function onOpenTab(evt, tabName) {
         tablinks[i].className = tablinks[i].className.replace(' active', '');
     }
 
+
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = 'flex';
     evt.currentTarget.className += ' active';
+
+    if (tablinks.className === ' active') {
+        tablinks.innerHTML = '';
+    }
 }
 
 function renderGallery() {
@@ -203,6 +207,7 @@ function onEdit() {
 }
 
 function onClickSelection(ev) {
+    ev.preventDefault();
     if (ev.offsetX >= rect.x && ev.offsetX <= rect.x + rect.width && ev.offsetY >= rect.y && ev.offsetY <= (rect.y + rect.height)) {
         startX = ev.offsetX;
         startY = ev.offsetY;
@@ -210,6 +215,7 @@ function onClickSelection(ev) {
 };
 
 function onReleaseSelection(ev) {
+    ev.preventDefault();
     endX = ev.offsetX;
     endY = ev.offsetY;
     differenceX = endX - startX;

@@ -1,9 +1,9 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html{
-    background-color: teal;
+html {
+  background-color: teal;
 }
 
 body {
@@ -13,97 +13,106 @@ body {
 }
 
 .grid-container {
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    /* grid-template-rows: 250px; */
-    grid-auto-flow: row;
-    gap: 5px;
-    
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* grid-template-rows: 250px; */
+  grid-auto-flow: row;
+  gap: 5px;
 }
 
 .item {
-    grid-column: span 1;
-    grid-row: span 1;
+  grid-column: span 1;
+  grid-row: span 1;
 }
 
 img {
-    max-width: 250px;
-    max-height: 250px;
-    cursor: pointer;
+  max-width: 250px;
+  max-height: 250px;
+  cursor: pointer;
 }
 
 /* tabs */
 
 .tab {
-margin: 5px;
-height: 73px;
-border-radius: 37px;
-background-color: #5970c1;
-background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
-  }
-  
+  margin: 5px;
+  height: 73px;
+  border-radius: 37px;
+  background-color: #5970c1;
+  background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+}
+
 /* Style the buttons that are used to open the tab content */
 
 .tablinks {
-padding-top: 20px;
-padding-left: 25px;
-float: left;
-width: 74px;
-height: 22px;
-color: #ffffff;
-font-size: 21px;
-font-weight: 500;
-cursor: pointer;
-  }
+  padding-top: 20px;
+  padding-left: 25px;
+  float: left;
+  width: 74px;
+  height: 22px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 500;
+  cursor: pointer;
+}
 
 /* Change background color of buttons on hover */
 
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
 .tab button:hover {
-    background-color: #ddd;
-  }
+  background-color: #ddd;
+}
 
 /* Create an active/current tablink class */
 
 .tab button.active {
-    background-color: #ccc;
-  }
-  
+  background-color: #ccc;
+}
+
 /* Style the tab content */
 
 .tabcontent {
-    display: none;
-    padding: 6px 12px;
-
-/* border: 1px solid #ccc; */
-
-    border-top: none;
-  }
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
 
 /*flex meme tab */
 
 .flex-container {
   display: flex;
-  align-items: center ;
+  align-items: center;
   justify-content: space-around;
-  
 }
 
 .item-canvas {
-max-width: 400px;
-  /* background-color: turquoise; */
+  max-width: 400px;
 }
 
 .item-control {
   height: 400px;
   width: auto;
-  
   background-color: #383b42;
   justify-self: center;
   padding: 0px 48px;
   border-radius: 56px;
 }
-
 
 /* meme control panel */
 
@@ -112,36 +121,23 @@ max-width: 400px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-}
-
-.txt-input {
-
 }
 
 .colors {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
 }
 
 .meme-buttons {
-      
-      padding-bottom:16px;
-      
-  }
-
-
-
-.font-form {
-    /* padding-top: 10px; */
-  }
+  padding-bottom: 16px;
+}
 
 .txt-input {
-    padding-bottom: 5px;
-  }
-select{
+  padding-bottom: 5px;
+}
+
+select {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 6px;
@@ -151,7 +147,7 @@ select{
   margin-bottom: 16px;
 }
 
-input{
+input {
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 6px;
@@ -159,63 +155,60 @@ input{
   width: 445px;
 }
 
-.section-text-btn{
+.section-text-btn {
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   /* background-image:linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%); */
   background-color: #19a59f;
-  min-height: 151px ;
+  min-height: 151px;
   padding-left: 16px;
   padding-right: 16px;
   margin-top: 16px;
   margin-bottom: 16px;
   border-radius: 24px;
-  
-
 }
+
 .impact {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  }
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .comic {
-    font-family: 'Comic Sans MS' ;
-  }
+  font-family: 'Comic Sans MS';
+}
 
 .arial {
-    font-family: Arial, Helvetica, sans-serif;
-  }
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-.input-buttons{
-    margin-top:16px;
-
-  }
+.input-buttons {
+  margin-top: 16px;
+}
 
 .input-buttons img {
-    max-width: 56px;
-    max-height: 51px;
-    background-color: white;
-    padding: 12px;
-    margin-left: 6px;
-    border-radius: 12px;
-    -webkit-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-    -moz-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-    box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-
-  }
-
+  max-width: 56px;
+  max-height: 51px;
+  background-color: white;
+  padding: 12px;
+  margin-left: 6px;
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+  -moz-box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+  box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+}
 
 .meme-buttons img {
-    max-width: 56px;
-    max-height: 51px;
-    background-color: white;
-    padding: 12px;
-    margin-right:6px;
-    border-radius: 12px;
-    -webkit-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-    -moz-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-    box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-  }
+  max-width: 56px;
+  max-height: 51px;
+  background-color: white;
+  padding: 12px;
+  margin-right: 6px;
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+  -moz-box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+  box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+}
 
 .colors img {
   max-width: 56px;
@@ -224,34 +217,34 @@ input{
   padding: 12px;
   margin-left: 6px;
   border-radius: 12px;
-  -webkit-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-  -moz-box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-  box-shadow: 0px 6px 0px 0px rgba(153,151,153,0.55);
-  }
+  -webkit-box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+  -moz-box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+  box-shadow: 0px 6px 0px 0px rgba(153, 151, 153, 0.55);
+}
 
 img.download {
-    max-width: 30px;
-    max-height: 30px;
-    background-color: white;
-    padding: 3px;
-    border-radius: 6px;
-  }
+  max-width: 30px;
+  max-height: 30px;
+  background-color: white;
+  padding: 3px;
+  border-radius: 6px;
+}
 
 img.trash {
-    background-color: #d42536;
-  }
+  background-color: #d42536;
+}
 
 img.swap {
   background-color: #3aaecc
-  }
+}
 
 img.broom {
-background-color: goldenrod;
-  }
+  background-color: goldenrod;
+}
 
 img.add-line {
-background-color: #3dd554;
-  }
+  background-color: #3dd554;
+}
 
 img.download {
   background-color: #8f44bb;
@@ -259,42 +252,46 @@ img.download {
 
 img.generate {
   max-width: 30px;
-    max-height: 30px;
-    background-color: white;
-    padding: 3px;
-    border-radius: 6px;
+  max-height: 30px;
+  background-color: white;
+  padding: 3px;
+  border-radius: 6px;
 }
 
 .generate-buttons {
   display: flex;
- height: 30px;
+  height: 30px;
 }
 
 /* media query */
 
-@media (max-width: 1200px) {
-    .flex-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center ;
-      justify-content: space-around;
-      
-    }
-    input {
-      width: 400px;
-    }
+@media (max-width: 1020px) {
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
   }
-
-  @media (max-width: 720px) {
-    .item-control {
-      width: 400px;
-      padding: 0;
-      border-radius: 12px;
-    }
-
-.section-text-btn {
-  padding: 60px;
+  input {
+    width: 400px;
+  }
+  .item-control {
+    margin-top: 5px;
+  }
 }
+
+@media (max-width: 600px) {
+  .item-control {
+    width: 400px;
+    padding: 0;
+    border-radius: 12px;
+  }
+  input {
+    width: 380px;
+  }
+  .section-text-btn {
+    padding: 60px;
+  }
   .meme-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -302,19 +299,20 @@ img.generate {
     padding-bottom: 0px;
   }
   .meme-buttons img {
-    margin-bottom: 16px;;
+    margin-bottom: 16px;
+    ;
   }
+}
 
-
+@media (max-width: 560px) {
+  .tabcontent {
+    justify-content: center;
   }
-
-  @media (max-width: 560px) {
-    .item {
-      display: flex;
-      flex-direction: column;
-      
-    }
-    .item img {
-      margin-bottom: 5px;
-    }
+  .item {
+    display: flex;
+    flex-direction: column;
   }
+  .item img {
+    margin-bottom: 5px;
+  }
+}
