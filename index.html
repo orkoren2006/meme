@@ -14,7 +14,7 @@
 <body onload="init()">
     <main>
         <div class="tab">
-            <div class="tablinks" onclick="onOpenTab(event, 'images')" id="defaultOpen">Images</div>
+            <div class="tablinks" onclick="onOpenTab(event, 'images')" id="defaultOpen">Gallery</div>
             <div class="tablinks" onclick="onOpenTab(event, 'generator')">Generator</div>
             <div class="logo">
                 <img src="icons/LOGO.png" class="image1">
@@ -51,8 +51,8 @@
         <div id="generator" class="tabcontent flex-container">
 
             <div class="flex item-canvas">
-                <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)"
-                    onmouseup="onReleaseSelection(event)">
+                <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)" 
+                onmouseup="onReleaseSelection(event)">
                 </canvas>
 
                 <!-- <div class="flex item-canvas">
@@ -126,7 +126,7 @@
     <footer>
         <span>coffee rights © | MEMEGEN | Or Koren 2020</span>
     </footer>
-    
+
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-storage.js"></script>
