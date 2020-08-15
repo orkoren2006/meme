@@ -12,117 +12,121 @@
 </head>
 
 <body onload="init()">
-
-    <div class="tab">
-        <div class="tablinks" onclick="onOpenTab(event, 'images')" id="defaultOpen">Images</div>
-        <div class="tablinks" onclick="onOpenTab(event, 'generator')">Generator</div>
-        <div class="logo">
-            <img src="icons/LOGO.png" class="image1">
-            <img src="icons/m-logo.png" class="image2">
-        </div>
-    </div>
-
-
-    <div id="images" class="tabcontent">
-        <div class="grid-container">
-            <div class="item">
-                <img src="img/1.jpg" onclick="onClickImage(1)">
-                <img src="img/2.jpg" onclick="onClickImage(2)">
-                <img src="img/3.jpg" onclick="onClickImage(3)">
-                <img src="img/4.jpg" onclick="onClickImage(4)">
-                <img src="img/5.jpg" onclick="onClickImage(5)">
-                <img src="img/6.jpg" onclick="onClickImage(6)">
-                <img src="img/7.jpg" onclick="onClickImage(7)">
-                <img src="img/8.jpg" onclick="onClickImage(8)">
-                <img src="img/9.jpg" onclick="onClickImage(9)">
-                <img src="img/10.jpg" onclick="onClickImage(10)">
-                <img src="img/11.jpg" onclick="onClickImage(11)">
-                <img src="img/12.jpg" onclick="onClickImage(12)">
-                <img src="img/13.jpg" onclick="onClickImage(13)">
-                <img src="img/14.jpg" onclick="onClickImage(14)">
-                <img src="img/15.jpg" onclick="onClickImage(15)">
-                <img src="img/16.jpg" onclick="onClickImage(16)">
-                <img src="img/17.jpg" onclick="onClickImage(17)">
-                <img src="img/18.jpg" onclick="onClickImage(18)">
+    <main>
+        <div class="tab">
+            <div class="tablinks" onclick="onOpenTab(event, 'images')" id="defaultOpen">Images</div>
+            <div class="tablinks" onclick="onOpenTab(event, 'generator')">Generator</div>
+            <div class="logo">
+                <img src="icons/LOGO.png" class="image1">
+                <img src="icons/m-logo.png" class="image2">
             </div>
         </div>
-    </div>
 
-    <div id="generator" class="tabcontent flex-container">
 
-        <div class="flex item-canvas">
-            <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)"
-                onmouseup="onReleaseSelection(event)">
-            </canvas>
+        <div id="images" class="tabcontent">
+            <div class="grid-container">
+                <div class="item">
+                    <img src="img/1.jpg" onclick="onClickImage(1)">
+                    <img src="img/2.jpg" onclick="onClickImage(2)">
+                    <img src="img/3.jpg" onclick="onClickImage(3)">
+                    <img src="img/4.jpg" onclick="onClickImage(4)">
+                    <img src="img/5.jpg" onclick="onClickImage(5)">
+                    <img src="img/6.jpg" onclick="onClickImage(6)">
+                    <img src="img/7.jpg" onclick="onClickImage(7)">
+                    <img src="img/8.jpg" onclick="onClickImage(8)">
+                    <img src="img/9.jpg" onclick="onClickImage(9)">
+                    <img src="img/10.jpg" onclick="onClickImage(10)">
+                    <img src="img/11.jpg" onclick="onClickImage(11)">
+                    <img src="img/12.jpg" onclick="onClickImage(12)">
+                    <img src="img/13.jpg" onclick="onClickImage(13)">
+                    <img src="img/14.jpg" onclick="onClickImage(14)">
+                    <img src="img/15.jpg" onclick="onClickImage(15)">
+                    <img src="img/16.jpg" onclick="onClickImage(16)">
+                    <img src="img/17.jpg" onclick="onClickImage(17)">
+                    <img src="img/18.jpg" onclick="onClickImage(18)">
+                </div>
+            </div>
+        </div>
 
-            <!-- <div class="flex item-canvas">
+        <div id="generator" class="tabcontent flex-container">
+
+            <div class="flex item-canvas">
+                <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)"
+                    onmouseup="onReleaseSelection(event)">
+                </canvas>
+
+                <!-- <div class="flex item-canvas">
             <canvas id="myCanvas" width="400" height="400" ontouchstart="onClickSelection(event)"
                 ontouchend="onReleaseSelection(event)" >
             </canvas> -->
 
 
-        </div>
-
-        <div class="flex item-control">
-
-            <div class="txt-input">
-                <label for="txt"></label>
-                <input type="text" placeholder="Insert Text" oninput="onInsertText()" id="txt" on>
-                <!-- <button type=button onclick="submitText()">Submit Text</button> -->
             </div>
 
-            <div class="input-buttons">
-                <img class="add-line" src="icons/plus.png" onclick="onAddLine()">
-                <img class="swap" src="icons/sort.png" onclick="onSwapLine()">
-                <img class="broom" src="icons/clean.png" onclick="onClearLine()">
-                <img class="trash" src="icons/bin.png" onclick="onClearText()">
-            </div>
+            <div class="flex item-control">
 
-            <div class="section-text-btn">
-                <div class="meme-buttons">
-                    <img src="icons/increase font - icon.png" onclick="onIncreaseFont()">
-                    <img src="icons/decrease font - icon.png" onclick="onDecreaseFont()">
-                    <img src="icons/down-arrow (1).png" onclick="onMoveDown()">
-                    <img src="icons/up-arrow (1).png" onclick="onMoveUp()">
-                    <img src="icons/align-to-left.png" onclick="onAlignLeft()">
-                    <img src="icons/center-text-alignment.png" onclick="onAlignCenter()">
-                    <img src="icons/align-to-right.png" onclick="onAlignRight()">
+                <div class="txt-input">
+                    <label for="txt"></label>
+                    <input type="text" placeholder="Insert Text" oninput="onInsertText()" id="txt" on>
+                    <!-- <button type=button onclick="submitText()">Submit Text</button> -->
+                </div>
+
+                <div class="input-buttons">
+                    <img class="add-line" src="icons/plus.png" onclick="onAddLine()">
+                    <img class="swap" src="icons/sort.png" onclick="onSwapLine()">
+                    <img class="broom" src="icons/clean.png" onclick="onClearLine()">
+                    <img class="trash" src="icons/bin.png" onclick="onClearText()">
+                </div>
+
+                <div class="section-text-btn">
+                    <div class="meme-buttons">
+                        <img src="icons/increase font - icon.png" onclick="onIncreaseFont()">
+                        <img src="icons/decrease font - icon.png" onclick="onDecreaseFont()">
+                        <img src="icons/down-arrow (1).png" onclick="onMoveDown()">
+                        <img src="icons/up-arrow (1).png" onclick="onMoveUp()">
+                        <img src="icons/align-to-left.png" onclick="onAlignLeft()">
+                        <img src="icons/center-text-alignment.png" onclick="onAlignCenter()">
+                        <img src="icons/align-to-right.png" onclick="onAlignRight()">
+
+                    </div>
+
+                    <div class="colors">
+
+                        <form class="font-form" action="/action_page.php">
+                            <label for="fonts"></label>
+                            <select onchange="onChangeFonts()" id="fonts" name="fonts">
+                                <option class="impact" value="Impact">Impact</option>
+                                <option class="arial" value="Arial">Arial</option>
+                                <option class="courier" value="Trebuchet MS">Trebuchet MS</option>
+                                <option class="tahoma" value="Tahoma">Tahoma</option>
+                                <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
+                            </select>
+                        </form>
+
+                        <label for="fill"><img src="icons/paint-board-and-brush.png"></label>
+                        <input type="color" id="fill" value="#ffffff" onchange="onPickFill()" hidden>
+
+                        <label for="stroke"><img src="icons/fonts-hand-drawn-symbol-outline.png"></label>
+                        <input type="color" id="stroke" onchange="onPickStroke()" hidden>
+                    </div>
 
                 </div>
 
-                <div class="colors">
-
-                    <form class="font-form" action="/action_page.php">
-                        <label for="fonts"></label>
-                        <select onchange="onChangeFonts()" id="fonts" name="fonts">
-                            <option class="impact" value="Impact">Impact</option>
-                            <option class="arial" value="Arial">Arial</option>
-                            <option class="courier" value="Trebuchet MS">Trebuchet MS</option>
-                            <option class="tahoma" value="Tahoma">Tahoma</option>
-                            <option class="comic" value="Comic Sans MS">Comic Sans MS</option>
-                        </select>
-                    </form>
-
-                    <label for="fill"><img src="icons/paint-board-and-brush.png"></label>
-                    <input type="color" id="fill" value="#ffffff" onchange="onPickFill()" hidden>
-
-                    <label for="stroke"><img src="icons/fonts-hand-drawn-symbol-outline.png"></label>
-                    <input type="color" id="stroke" onchange="onPickStroke()" hidden>
+                <div class="generate-buttons">
+                    <button class="generate" onclick="onGenerateMeme()">Generate</button>
+                    <div><a href="#" class="download" onclick="downloadCanvas(this)" download="" hidden>
+                            Download </a></div>
+                    <button class="edit" onclick="onEdit()" hidden>Edit again</button>
                 </div>
-
             </div>
 
-            <div class="generate-buttons">
-                <button class="generate" onclick="onGenerateMeme()">Generate</button>
-                <div><a href="#" class="download" onclick="downloadCanvas(this)" download="" hidden>
-                        Download </a></div>
-                <button class="edit" onclick="onEdit()" hidden>Edit again</button>
-            </div>
+
         </div>
-
-
-    </div>
-
+    </main>
+    <footer>
+        <span>coffee rights © | MEMEGEN | Or Koren 2020</span>
+    </footer>
+    
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-storage.js"></script>
