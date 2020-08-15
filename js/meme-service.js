@@ -14,8 +14,8 @@ var line = {
     align: 'center',
     fill: 'white',
     stroke: 'black',
-    x: 250,
-    y: 450
+    x: 200,
+    y: 370
 }
 
 var gMeme = {
@@ -29,7 +29,7 @@ var gMeme = {
             align: 'center',
             fill: 'white',
             stroke: 'black',
-            x: 250,
+            x: 200,
             y: 70
         }
     ]
@@ -119,12 +119,12 @@ function alignLeft() {
 
 function alignRight() {
     gMeme.lines[index].align = 'right'
-    gMeme.lines[index].x = 490;
+    gMeme.lines[index].x = 390;
 }
 
 function alignCenter() {
     gMeme.lines[index].align = 'center'
-    gMeme.lines[index].x = 250;
+    gMeme.lines[index].x = 200;
 }
 
 function clearLine() {

@@ -156,7 +156,7 @@ input{
   padding-bottom: 12px;
   padding-left: 6px;
   border-radius: 12px;
-  min-width: 445px;
+  width: 445px;
 }
 
 .section-text-btn{
@@ -280,10 +280,41 @@ img.generate {
       justify-content: space-around;
       
     }
-
-
-
     input {
       width: 400px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .item-control {
+      width: 400px;
+      padding: 0;
+      border-radius: 12px;
+    }
+
+.section-text-btn {
+  padding: 60px;
+}
+  .meme-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0px;
+  }
+  .meme-buttons img {
+    margin-bottom: 16px;;
+  }
+
+
+  }
+
+  @media (max-width: 560px) {
+    .item {
+      display: flex;
+      flex-direction: column;
+      
+    }
+    .item img {
+      margin-bottom: 5px;
     }
   }
