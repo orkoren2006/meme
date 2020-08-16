@@ -7,7 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>My meme generator</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="https://kit.fontawesome.com/9ca7f01aba.js" crossorigin="anonymous"></script> -->
+
 
 </head>
 
@@ -25,41 +25,15 @@
 
         <div id="images" class="tabcontent">
             <div class="grid-container">
-                <div class="item">
-                    <img src="img/1.jpg" onclick="onClickImage(1)">
-                    <img src="img/2.jpg" onclick="onClickImage(2)">
-                    <img src="img/3.jpg" onclick="onClickImage(3)">
-                    <img src="img/4.jpg" onclick="onClickImage(4)">
-                    <img src="img/5.jpg" onclick="onClickImage(5)">
-                    <img src="img/6.jpg" onclick="onClickImage(6)">
-                    <img src="img/7.jpg" onclick="onClickImage(7)">
-                    <img src="img/8.jpg" onclick="onClickImage(8)">
-                    <img src="img/9.jpg" onclick="onClickImage(9)">
-                    <img src="img/10.jpg" onclick="onClickImage(10)">
-                    <img src="img/11.jpg" onclick="onClickImage(11)">
-                    <img src="img/12.jpg" onclick="onClickImage(12)">
-                    <img src="img/13.jpg" onclick="onClickImage(13)">
-                    <img src="img/14.jpg" onclick="onClickImage(14)">
-                    <img src="img/15.jpg" onclick="onClickImage(15)">
-                    <img src="img/16.jpg" onclick="onClickImage(16)">
-                    <img src="img/17.jpg" onclick="onClickImage(17)">
-                    <img src="img/18.jpg" onclick="onClickImage(18)">
-                </div>
             </div>
         </div>
 
         <div id="generator" class="tabcontent flex-container">
 
             <div class="flex item-canvas">
-                <canvas id="myCanvas" width="400" height="400" onmousedown="onClickSelection(event)" 
-                onmouseup="onReleaseSelection(event)">
+                <canvas id="myCanvas" width="400" height="400" onmousedown="onPressedMouse(event)"
+                    onmousemove="onReleaseSelection(event)" onmouseup="onReleaseMouse(event)">
                 </canvas>
-
-                <!-- <div class="flex item-canvas">
-            <canvas id="myCanvas" width="400" height="400" ontouchstart="onClickSelection(event)"
-                ontouchend="onReleaseSelection(event)" >
-            </canvas> -->
-
 
             </div>
 
@@ -68,7 +42,6 @@
                 <div class="txt-input">
                     <label for="txt"></label>
                     <input type="text" placeholder="Insert Text" oninput="onInsertText()" id="txt" on>
-                    <!-- <button type=button onclick="submitText()">Submit Text</button> -->
                 </div>
 
                 <div class="input-buttons">

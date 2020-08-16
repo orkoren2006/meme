@@ -6,6 +6,7 @@ var gCtx;
 
 var index = 0;
 
+var isMousePressed = false;
 
 var line = {
     txt: 'insert text',
@@ -35,8 +36,9 @@ var gMeme = {
     ]
 }
 
-var rect = {
-    width: gMeme.lines[0].txt.length * (gMeme.lines[0].size /2),
+
+var gSelectedText = {
+    width: gMeme.lines[0].txt.length * (gMeme.lines[0].size / 2),
     height: gMeme.lines[0].size + 10,
     x: gMeme.lines[0].x - (gMeme.lines[0].txt.length / 2) * (gMeme.lines[0].size / 2),
     y: gMeme.lines[0].y - gMeme.lines[0].size
@@ -51,27 +53,27 @@ var endY;
 var differenceX;
 var differenceY;
 
-var gKeywords = { 'happy': 12, 'funny puk': 1 }
+// var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 var gImgs = [
-    { id: 1, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 2, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 3, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 4, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 5, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 6, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 7, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 8, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 9, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 10, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 11, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 12, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 13, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 14, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 15, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 16, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 17, url: 'img/popo.jpg', keywords: ['happy'] },
-    { id: 18, url: 'img/popo.jpg', keywords: ['happy'] }
+    { id: 1, url: 'img/1.jpg', keywords: ['happy'] },
+    { id: 2, url: 'img/2.jpg', keywords: ['happy'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['happy'] },
+    { id: 4, url: 'img/4.jpg', keywords: ['happy'] },
+    { id: 5, url: 'img/5.jpg', keywords: ['happy'] },
+    { id: 6, url: 'img/6.jpg', keywords: ['happy'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['happy'] },
+    { id: 8, url: 'img/8.jpg', keywords: ['happy'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['happy'] },
+    { id: 10, url: 'img/10.jpg', keywords: ['happy'] },
+    { id: 11, url: 'img/11.jpg', keywords: ['happy'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['happy'] },
+    { id: 13, url: 'img/13.jpg', keywords: ['happy'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['happy'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['happy'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['happy'] },
+    { id: 17, url: 'img/17.jpg', keywords: ['happy'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['happy'] }
 ];
 
 function swapLine() {
@@ -84,15 +86,15 @@ function addLine() {
 }
 
 function updateSelectArea() {
-    rect.width = gMeme.lines[index].txt.length * (gMeme.lines[index].size / 2);
-    rect.height = gMeme.lines[index].size + 10;
-    rect.y = gMeme.lines[index].y - gMeme.lines[index].size;
+    gSelectedText.width = gMeme.lines[index].txt.length * (gMeme.lines[index].size / 2);
+    gSelectedText.height = gMeme.lines[index].size + 10;
+    gSelectedText.y = gMeme.lines[index].y - gMeme.lines[index].size;
     if (gMeme.lines[index].align === 'center') {
-        rect.x = gMeme.lines[index].x - (gMeme.lines[index].txt.length / 2) * (gMeme.lines[index].size / 2);
+        gSelectedText.x = gMeme.lines[index].x - (gMeme.lines[index].txt.length / 2) * (gMeme.lines[index].size / 2);
     } else if (gMeme.lines[index].align === 'left') {
-        rect.x = gMeme.lines[index].x - 5;
+        gSelectedText.x = gMeme.lines[index].x - 5;
     } else {
-        rect.x = gMeme.lines[index].x - (gMeme.lines[index].txt.length / 2) * (gMeme.lines[index].size);
+        gSelectedText.x = gMeme.lines[index].x - (gMeme.lines[index].txt.length / 2) * (gMeme.lines[index].size);
     }
 }
 
@@ -141,29 +143,45 @@ function clearText() {
     }
 };
 
-function moveSelection() {
-    gMeme.lines[index].x += differenceX;
-    gMeme.lines[index].y += differenceY;
-    rect.x += differenceX;
-    rect.y += differenceY;
-};
 
 function loadRect() {
-    rect.x = loadFromStorage(KEY, rect).x
-    rect.y = loadFromStorage(KEY, rect).y
-    rect.width = loadFromStorage(KEY, rect).width
-    rect.height = loadFromStorage(KEY, rect).height
+    gSelectedText.x = loadFromStorage(KEY, gSelectedText).x
+    gSelectedText.y = loadFromStorage(KEY, gSelectedText).y
+    gSelectedText.width = loadFromStorage(KEY, gSelectedText).width
+    gSelectedText.height = loadFromStorage(KEY, gSelectedText).height
 }
 
 function clearRect() {
-    rect.x = 0;
-    rect.y = 0;
-    rect.width = 0; 
-    rect.height = 0;
+    gSelectedText.x = 0;
+    gSelectedText.y = 0;
+    gSelectedText.width = 0;
+    gSelectedText.height = 0;
 };
 
-//delete when done:
+//drag and drop funcs:
 
-function checkCor(ev) {
-    console.log(ev);
+function getStartCoords(x, y) {
+    startX = x;
+    startY = y;
 }
+
+function updateCoords(x, y) {
+    endX = x;
+    endY = y;
+    differenceX = endX - startX;
+    differenceY = endY - startY;
+}
+
+function moveSelection() {
+    gMeme.lines[index].x += differenceX;
+    gMeme.lines[index].y += differenceY;
+    gSelectedText.x += differenceX;
+    gSelectedText.y += differenceY;
+};
+
+// function resetStartCoords(x, y) {
+//     gMeme.lines[index].x += differenceX;
+//     gMeme.lines[index].y += differenceY;
+//     gSelectedText.x = x;
+//     gSelectedText.y = y;
+// }

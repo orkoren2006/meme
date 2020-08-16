@@ -5,11 +5,7 @@ function init() {
     gCtx = gCanvas.getContext('2d');
 
     document.getElementById("defaultOpen").click();
-    // renderGallery()
-
-    // window.addEventListener('resize', function(){
-    //     resizeCanvas()
-    // })
+    renderGallery()
 
     drawImg(gMeme.selectedImgId, drawText, drawRect)
 }
@@ -21,7 +17,7 @@ function onOpenTab(evt, tabName) {
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName('tabcontent');
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = 'none';     
+        tabcontent[i].style.display = 'none';
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
@@ -36,28 +32,29 @@ function onOpenTab(evt, tabName) {
 
 }
 
-// function renderGallery() { // Doesn't create gaps between images for some reason
-//     var strHTML = `<div class="item">`;
-//     for (var i = 1; i <= 17; i++) {
-//         strHTML += `<img src="img/${i}.jpg" onclick="onClickImage(${i})">`
-//     }
-//     strHTML += `</div>`
-//     document.querySelector('.grid-container').innerHTML = strHTML;
-// }
+function renderGallery() { 
+    var strHTML = '';
+    gImgs.forEach(function(img) {
+        strHTML += `<img src="${img.url}" onclick="onClickImage(${img.id})">`
+      });
+    document.querySelector('.grid-container').innerHTML = strHTML;
+};
 
 function drawImg(num, func, func2) {
-    const img = new Image();
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-        func();
+    // debugger;
+    const img = new Image(); // similar to queryselector function (selecting the img element, not related to the canvas)
+    img.onload = () => { // loading the image
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height); //the only reference to the canvas
+        func(); //the a-synchronic funcitons we want to add to the image rendering. change their names to a clearer one
         func2();
     }
-    img.src = `img/${num}.jpg`;
+    img.src = `img/${num}.jpg`; //continue to line 50, selecting the specific image
 }
 
 function onClickImage(num) {
     onOpenTab(event, 'generator')
     drawImg(num, drawText, drawRect)
+
     gMeme.selectedImgId = num;
 }
 
@@ -76,7 +73,7 @@ function drawText() {
 
 function drawRect() {
     gCtx.beginPath();
-    gCtx.rect(rect.x, rect.y, rect.width, rect.height); /// x, y, width, height
+    gCtx.rect(gSelectedText.x, gSelectedText.y, gSelectedText.width, gSelectedText.height); /// x, y, width, height
     gCtx.strokeStyle = 'black';
     gCtx.stroke();
 }
@@ -184,7 +181,7 @@ function onGenerateMeme() {
     document.querySelector('.generate').style.display = 'none';
     document.querySelector('.download').style.display = 'flex';
     document.querySelector('.edit').style.display = 'flex';
-    saveToStorage(KEY, rect)
+    saveToStorage(KEY, gSelectedText)
     clearRect();
     drawImg(gMeme.selectedImgId, drawText, drawRect);
 }
@@ -203,34 +200,30 @@ function onEdit() {
     drawRect();
 }
 
-function onClickSelection(ev) {
-    ev.preventDefault();
-    if (ev.offsetX >= rect.x && ev.offsetX <= rect.x + rect.width && ev.offsetY >= rect.y && ev.offsetY <= (rect.y + rect.height)) {
-        startX = ev.offsetX;
-        startY = ev.offsetY;
-    }
-};
 
-function onReleaseSelection(ev) {
-    ev.preventDefault();
-    endX = ev.offsetX;
-    endY = ev.offsetY;
-    differenceX = endX - startX;
-    differenceY = endY - startY;
-    if (ev.offsetX >= rect.x + differenceX && ev.offsetX <= rect.x + rect.width +
-        differenceX && ev.offsetY >= rect.y + differenceY && ev.offsetY <= (rect.y + rect.height) + differenceY) {
-        moveSelection();
-        drawImg(gMeme.selectedImgId, drawText, drawRect)
-    }
-};
+function onPressedMouse() {
+    isMousePressed = true;
 
-
-// // need to fix bug when choosing image it clears it
-function resizeCanvas() {
-    const elContainer = document.querySelector('#myCanvas');
-    // Note: changing the canvas dimension this way clears the canvas
-    gCanvas.width = elContainer.offsetWidth;
-    gCanvas.height = elContainer.offsetHeight;
-    drawImg(gMeme.selectedImgId, drawText)
 }
+
+function onReleaseMouse(ev) {
+    isMousePressed = false;
+    // resetStartCoords(ev.offsetX, ev.offsetY)
+}
+
+function onReleaseSelection(ev) { 
+    if (!isMousePressed) return;
+  
+    if (ev.offsetX >= gSelectedText.x && ev.offsetX <= gSelectedText.x + gSelectedText.width && ev.offsetY >= gSelectedText.y && ev.offsetY <= (gSelectedText.y + gSelectedText.height)) {
+        getStartCoords (ev.offsetX, ev.offsetY);
+    }
+    
+    updateCoords(ev.offsetX, ev.offsetY);
+   
+    if (ev.offsetX >= gSelectedText.x + differenceX && ev.offsetX <= gSelectedText.x + gSelectedText.width +
+        differenceX && ev.offsetY >= gSelectedText.y + differenceY && ev.offsetY <= (gSelectedText.y + gSelectedText.height) + differenceY) {
+        moveSelection();
+        drawImg(gMeme.selectedImgId, drawText, drawRect)  
+    }
+};
 
